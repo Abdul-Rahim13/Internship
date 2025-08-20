@@ -7,8 +7,9 @@ export const AppContext = createContext()
 
 const ContextProvider = (props) => {
     const phone = '03151464618'
+    const name = 'Abdul Rahim'
     return (
-        <AppContext.Provider value={phone}>
+        <AppContext.Provider value={{phone, name}}>
             {props.children}
         </AppContext.Provider>
     )
