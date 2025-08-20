@@ -36,6 +36,7 @@ function Userefhook() {
             <button onClick={btnclicked} className='cursor-pointer w-25 bg-amber-100 rounded-2xl'> Click Here!</button>
 
         </div>
+        <div className="border-t border-gray-400 w-10/12 mx-auto my-6"></div>
     </div>
   )
 }

@@ -2,6 +2,10 @@ import './App.css'
 import Usestatehook from './components/Usestatehook'
 import Useeffecthook from './components/Useeffecthook'
 import Userefhook from './components/Userefhook'
+import Usecallbackhook from './components/Usecallbackhook'
+
+
+
 
 function App() {
 
@@ -10,6 +14,7 @@ function App() {
     <Usestatehook/>
     <Useeffecthook/>
     <Userefhook/>
+    <Usecallbackhook/>
     </>
   )
 }
