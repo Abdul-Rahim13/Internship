@@ -6,7 +6,7 @@ function Form() {
     const [data, setData] = useState([])
     const [form, setForm] = useState({
         name: '',
-        number: '',
+        number: 0,
         email: '',
         city: ''
     })
@@ -58,7 +58,7 @@ function Form() {
         const value = e.target.value
 
         if(name === "number"){
-            if(/^[0-9\b]+$/.test(value)){
+            if(/^[0-9]+$/.test(value)){
                 setForm({...form, [name]:value})
             }
         }else{
@@ -91,30 +91,30 @@ function Form() {
     
     <div className='grid grid-cols-2 justify-center items-center gap-y-5 mt-15 ml-[-250px]'>
         <div className='flex justify-center items-center'>
-            <form className='justify-center items-center'>
+            <form className='justify-center items-center' onSubmit={addData}>
 
             <h1 className='mb-2'>Name:</h1>
-            <input className='border-1 border-gray-700 w-55 pl-2 text-[12px]' type="text" name='name'  placeholder='Enter you name' 
+            <input className='border-1 border-gray-700 w-55 pl-2 text-[12px]' required type="text" name='name'  placeholder='Enter you name' 
             value={form.name}
             onChange={handleInputs}/>
 
             <h1 className='mb-2 mt-2'>Phone No</h1>
-            <input className='border-1 border-gray-700 w-55 pl-2 text-[12px]' type="number" name='number' placeholder='Enter your number' 
+            <input className='border-1 border-gray-700 w-55 pl-2 text-[12px]' type="number" required name='number' placeholder='Enter your number' 
             value={form.number} 
             onChange={handleInputs} />
 
             <h1 className='mb-2 mt-2'>Email</h1>
-            <input className='border-1 border-gray-700  w-55 pl-2 text-[12px]' type="email" name='email'  placeholder='Enter your email' 
+            <input className='border-1 border-gray-700  w-55 pl-2 text-[12px]' type="email" name='email' required  placeholder='Enter your email' 
             value={form.email} 
             onChange={handleInputs}/>
 
             <h1 className='mb-2 mt-2'>City:</h1>
-            <input className='border-1 border-gray-700 w-55 pl-2 text-[12px]' type="text" name='city'  placeholder='Enter your city ' 
+            <input className='border-1 border-gray-700 w-55 pl-2 text-[12px]' type="text" name='city' required placeholder='Enter your city ' 
             value={form.city} 
             onChange={handleInputs}/>
 
             <div className='flex flex-col justify-center items-center mt-10'>
-                <button className='cursor-pointer h-10 w-25 bg-amber-100 rounded-2xl ' onClick={addData}>{isEditButton ? "Edit data": "Save Data"}</button>
+                <button className='cursor-pointer h-10 w-25 bg-amber-100 rounded-2xl ' >{isEditButton ? "Edit data": "Save Data"}</button>
             </div>
 
         </form>
