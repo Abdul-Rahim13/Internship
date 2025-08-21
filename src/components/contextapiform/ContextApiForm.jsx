@@ -78,14 +78,11 @@ export const AppProvider = ({ children }) => {
       })
     }
   }
-
-  const handleDelete = (index) => {
-    const act_index = index -1
-    if (act_index >= 0){
-      const updateData = data.filter((item, idx) => idx !== act_index)
+   const handleDelete = (index) => {
+      const updateData = data.filter((item, idx) => idx !== index)
       setData(updateData)
     }
-  }
+
 
   return (
     <AppContext.Provider value={{handleInputs, data, form, addData, isEditButton, handleEdit, handleDelete}}>
