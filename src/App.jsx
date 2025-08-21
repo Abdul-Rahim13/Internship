@@ -1,15 +1,13 @@
 import './App.css'
-import Form from './components/Form'
-
-
+import { AppProvider } from './components/contextapiform/ContextApiForm'
+import FormCAPI from './components/contextapiform/FormCAPI'
 
 function App() {
-
   return (
-    <>
-    <Form/>
-    </>
+    <AppProvider>
+      <FormCAPI />
+    </AppProvider>
   )
 }
 
-export default App
+export default App;
