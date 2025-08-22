@@ -2,7 +2,7 @@ import React, { useContext } from 'react'
 import { AppContext } from './ContextApiForm'
 
 function FormCAPI() {
-  const { handleInputs, form, data, addData, isEditButton, handleEdit, handleDelete } = useContext(AppContext);
+  const { handleInputs, form, data, addData, isEditButton, handleEdit, handleDelete, Search, serch} = useContext(AppContext);
 
   return (
     <div className='grid grid-cols-2 justify-center items-center gap-y-5 mt-15 ml-[-250px]'>
@@ -36,8 +36,14 @@ function FormCAPI() {
         </form>
         </div>
 
+
         <div className='flex mb-50 h-24 flex-col w-[800px]'>
-            <h1 className='font-bold text-2xl'>Data Stored : </h1>
+
+          <div className="flex justify-center mb-5">
+            <input type="text" placeholder="Search..." className="w-80 px-4 py-2 border border-gray-400 rounded-2xl focus:outline-none focus:ring-2 focus:ring-blue-400" onChange={Search}/>
+          </div>
+
+            <h1 className='font-bold text-2xl mb-3'>Data Stored : </h1>
                 <table >
                     <thead className='text-center font-semibold text-[18px]'>
                         <tr>
@@ -52,7 +58,7 @@ function FormCAPI() {
 
                     <tbody>
                         {
-                            data.map((item, index) => {
+                            (serch.length > 0 ? serch: data).map((item, index) => {
                                 return (
                                     <tr key={index} className='text-center'>
                                         <td>{index+1}</td>
