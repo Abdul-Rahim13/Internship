@@ -70,10 +70,6 @@ function Redux() {
     store.dispatch(incrementBy(10))
     console.log(store.getState())
 
-    //                         CREATE-ASYNC-THUNK
-    // handle requests async
-
-
 
   return (
   <div>
