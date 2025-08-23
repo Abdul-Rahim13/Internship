@@ -67,7 +67,7 @@ export const AppProvider = ({ children }) => {
     setData([...data, form])
   }
         
-      setForm({name: '',number: 0,email: '',city: ''})
+    setForm({name: '',number: 0,email: '',city: ''})
   }
 
   const handleEdit = (index) => {
