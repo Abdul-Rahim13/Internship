@@ -18,19 +18,31 @@ export const userSlice = createSlice({
 
             if (state.editButton){
                 const index = state.users.findIndex((user) => (
-                    user.id === action.payload
+                    user.id === action.payload.id
                 ))
                 if(index !== -1){
                     state.users[index] = {...state.users[index], ...action.payload}
                 }
                 state.editButton = false
             } else{
-                
+
+                const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+                    if(!emailPattern.test(action.payload.email)){
+                        alert("please Enter a valid Email Address")
+                        return
+                    }
+
+                const duplicateEmail = state.users.find ((item) => (
+                        item.email === action.payload.email))
+                    if (duplicateEmail){
+                        alert("Email already exsist")
+                        return
+                    }
                 const newUser = {
                     id: Date.now(),
                     name: action.payload.name,
                     number: action.payload.number,
-                    email: action.payload.email,
+                    email: action.payload.email, 
                     city: action.payload.city,
                 }
                 
@@ -57,3 +69,5 @@ export const userSlice = createSlice({
         }
     }
 })
+
+export const {saveUser, editUser, deleteUser, searchUser} = userSlice.actions
