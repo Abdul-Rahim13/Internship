@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { configureStore, createSlice } from "@reduxjs/toolkit";
 const initialState = {
     users: [
         {id: 1,name: 'abdul rahim', number:'03151464618', email: 'rahim12@gmail.com', city:'lahore'},
@@ -71,3 +71,10 @@ export const userSlice = createSlice({
 })
 
 export const {saveUser, editUser, deleteUser, searchUser} = userSlice.actions
+export default userSlice.reducer
+
+export const Store = configureStore({
+    reducer: {
+        user: userSlice.reducer
+    }
+})
