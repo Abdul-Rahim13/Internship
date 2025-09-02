@@ -1,16 +1,18 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { saveUser, editUser, deleteUser, searchUser, userSlice } from "./userslice";
+import { saveUser, editUser, deleteUser, searchUser, userSlice, updateForm } from "./userslice";
 
 function Form() {
     const dispatch = useDispatch()
     const form = useSelector((state) => state.user.form)
     const editButton = useSelector((state) => state.user.editButton)
     const users = useSelector((state) => state.user.users)
+    const searchResults = useSelector(state => state.user.searchResults);
+    const displayedUsers = searchResults.length > 0 ? searchResults : users;
 
     const handleChange = (e) => {
         const {name, value} = e.target
-        dispatch(saveUser({...form, [name]: value}))
+        dispatch(updateForm({...form, [name]: value}))
     }
 
     const handleSumbit = (e) => {
@@ -86,7 +88,7 @@ function Form() {
 
                     <tbody>
                         {
-                            users.map((user, index) => {
+                            displayedUsers.map((user, index) => {
                                 return (
                                     <tr key={user.id} className='text-center'>
                                         <td>{index+1}</td>

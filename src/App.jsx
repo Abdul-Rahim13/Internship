@@ -5,12 +5,13 @@ import CreateSLiceProegct from './components/redux/CreateSLiceProegct'
 import Redux from './components/redux/Redux'
 import Reduxasyncthunk from './components/redux/Reduxasyncthunk'
 import Form from './components/reduxform/form'
+import Api from './components/fetchapi/Api'
 
 
 function App() {
   return (
     <>
-    <Form/>
+    <Api/>
     </>
   )
 }

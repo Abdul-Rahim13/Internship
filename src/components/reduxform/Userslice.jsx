@@ -57,6 +57,9 @@ export const userSlice = createSlice({
             ))
             state.form = {...userToEdit}
         },
+        updateForm: (state, action) => {
+            state.form = { ...state.form, ...action.payload }
+        },
         deleteUser:(state, action) => {
             state.users = state.users.filter((user) => user.id !== action.payload)
         },
@@ -70,7 +73,7 @@ export const userSlice = createSlice({
     }
 })
 
-export const {saveUser, editUser, deleteUser, searchUser} = userSlice.actions
+export const {saveUser, editUser, deleteUser, searchUser, updateForm} = userSlice.actions
 export default userSlice.reducer
 
 export const Store = configureStore({
