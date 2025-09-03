@@ -1,13 +1,13 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams,useLocation } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faShoppingCart, faStar, faPlus, faMinus } from '@fortawesome/free-solid-svg-icons'
 
 function ProductDetails() {
-
+    const location = useLocation()
     const {id} = useParams()
-    const [product, setProduct] = useState(null)
+    const [product, setProduct] = useState(location.state || null)
     const [count, setCount] = useState(1)
 
     const fetchProduct = async () => {
@@ -20,8 +20,10 @@ function ProductDetails() {
     }
 
     useEffect(()=>{
-        fetchProduct()
-    }, [id])
+        if(!location.state){
+            fetchProduct()
+        }
+    }, [id, location.state])
 
     const handleInc = () => {
         setCount(count+1)

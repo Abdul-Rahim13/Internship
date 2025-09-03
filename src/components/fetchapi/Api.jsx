@@ -1,14 +1,13 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 
 function Api() {
-  const [data, setData] = useState([]);
-  const API = "https://fakestoreapi.com/products";
+    const [data, setData] = useState([]);
+    const API = "https://fakestoreapi.com/products";
 
-  // Handle HTTP req and responses
   const fectData = async () => {
     try {
       const res = await axios.get(API);
@@ -19,19 +18,19 @@ function Api() {
     }
   };
 
-  useEffect(() => {
-    fectData();
-  }, []);
+  useEffect (() => {
+    fectData()
+},[])
 
   return (
     <div className="px-6 py-8 bg-gray-50">
       <div className="flex items-center justify-between mb-6">
         <h2 className="text-2xl font-bold text-gray-800">Products</h2>
         <NavLink to={'/products/new'}>
-            <button className="flex items-center gap-2 bg-green-600 hover:bg-green-700 text-white font-semibold px-5 py-3 rounded-lg shadow transition">
-                <FontAwesomeIcon icon={faPlus} />
-                Add New Product
-            </button>
+          <button className="flex items-center gap-2 bg-green-600 hover:bg-green-700 text-white font-semibold px-5 py-3 rounded-lg shadow transition">
+            <FontAwesomeIcon icon={faPlus} />
+            Add New Product
+          </button>
         </NavLink>
       </div>
 
@@ -55,6 +54,12 @@ function Api() {
             <NavLink to={`/products/${item.id}`} className="w-full">
               <button className="mt-4 w-full px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-300 transition">
                 See Details
+              </button>
+            </NavLink>
+
+            <NavLink to={`/products/${item.id}/edit`} className="w-full">
+              <button className="mt-2 w-full px-4 py-2 bg-yellow-500 text-white rounded-lg hover:bg-yellow-600 focus:outline-none focus:ring-2 focus:ring-yellow-300 transition">
+                Edit Product
               </button>
             </NavLink>
           </div>
