@@ -24,6 +24,9 @@ function Api() {
   }, []);
 
   const deleteData = async (id) => {
+    const confirmDelte = window.confirm("Are you sure you want to delete the product")
+    if(!confirmDelte) return
+    
     try {
       await axios.delete(`https://fakestoreapi.com/products/${id}`)
       const update = data.filter((item) => item.id !== id)
