@@ -1,9 +1,10 @@
+import axios from 'axios'
 import React, { useState } from 'react'
 
 function Newproduct() {
 
     const [form, setformData] = useState({
-        id: 0,
+        id: '',
         title: '',
         price: 0.00,
         description: '',
@@ -14,18 +15,32 @@ function Newproduct() {
     const handleInputs = (e)=>{
         const name = e.target.name
         const value = e.target.value
-        if(name === "id" && name === "price"){
-            if(/^[0-9]+$/.test(value)){
-            setformData({...form, [name]:value})
-        }}else{
-            setformData({...form, [name]:value})
+        if (name === 'id' || name === 'price') {
+            if (value === '' || (/^\d*\.?\d*$/.test(value) && Number(value) >= 0)) {
+                setformData({...form, [name]: value === '' ? 0 : Number(value)})
+            }
+        } else {
+            setformData({ ...form, [name]: value })
         }
     }
+
+    const handleSubmit = async (e) => {
+        e.preventDefault()
+        try {
+            const res = await axios.post('https://fakestoreapi.com/products', form, {headers: {'Content-Type': 'application/json'}})
+            console.log(res.data)
+            alert("Product Added Succesfully!")
+            setformData({id: '', title: '', price: 0.00, description: '', category: '', image: '',})
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
 
   return (
      <div className="flex justify-center items-start min-h-screen bg-gray-50 py-10">
       <form
-        // onSubmit={handleSubmit}
+        onSubmit={handleSubmit}
         className="bg-white shadow-lg rounded-xl p-8 w-full max-w-lg"
       >
         <h2 className="text-2xl font-bold text-gray-800 mb-6">Add New Product</h2>
@@ -47,6 +62,7 @@ function Newproduct() {
             type="text"
             name="title"
             value={form.title}
+            onChange={handleInputs}
             className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
             placeholder="Product title"
           />
@@ -59,6 +75,7 @@ function Newproduct() {
             step="0.01"
             name="price"
             value={form.price}
+            onChange={handleInputs}
             className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
             placeholder="0.00"
           />
@@ -71,6 +88,7 @@ function Newproduct() {
             className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
             rows="3"
             value={form.description}
+            onChange={handleInputs}
             placeholder="Product description"
           ></textarea>
         </div>
@@ -81,6 +99,7 @@ function Newproduct() {
             type="text"
             name="category"
             value={form.category}
+            onChange={handleInputs}
             className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
             placeholder="Category name"
           />
@@ -92,6 +111,7 @@ function Newproduct() {
             type="url"
             name="image"
             value={form.image}
+            onChange={handleInputs}
             className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
             placeholder="http://example.com"
           />
