@@ -48,7 +48,6 @@ function Editproduct() {
             const res = await axios.put(`https://fakestoreapi.com/products/${id}`, form, {headers: {'Content-Type': 'application/json'}})
             alert("Product updated successfully!");
             navigate(`/products/${id}`, { state: res.data })
-            navigate(`/`, {state: {updatedData: res.data}})
         } catch (error) {
             console.log(error)
         }
