@@ -1,12 +1,13 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { NavLink, useLocation } from "react-router-dom";
+import { NavLink, useParams } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 
 function Api() {
-    const [data, setData] = useState([]);
-    const API = "https://fakestoreapi.com/products";
+  const [data, setData] = useState([]);
+  const {id} = useParams()
+  const API = "https://fakestoreapi.com/products";
 
   const fectData = async () => {
     try {
@@ -18,9 +19,21 @@ function Api() {
     }
   };
 
-  useEffect (() => {
-    fectData()
-},[])
+  useEffect(() => {
+    fectData();
+  }, []);
+
+  const deleteData = async (id) => {
+    try {
+      await axios.delete(`https://fakestoreapi.com/products/${id}`)
+      const update = data.filter((item) => item.id !== id)
+      setData(update)
+      alert("Product deleted successfully!");
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
 
   return (
     <div className="px-6 py-8 bg-gray-50">
@@ -51,6 +64,7 @@ function Api() {
             <p className="text-green-600 font-bold mt-2 text-lg">
               ${item.price}
             </p>
+
             <NavLink to={`/products/${item.id}`} className="w-full">
               <button className="mt-4 w-full px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-300 transition">
                 See Details
@@ -62,6 +76,13 @@ function Api() {
                 Edit Product
               </button>
             </NavLink>
+
+            <button
+              onClick={() => deleteData(item.id)}
+              className="mt-2 w-full px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-300 transition"
+            >
+              Delete Product
+            </button>
           </div>
         ))}
       </div>
