@@ -8,12 +8,14 @@ import Reduxasyncthunk from './components/redux/Reduxasyncthunk'
 import Form from './components/reduxform/form'
 import Api from './components/fetchapi/Api'
 import ProductDetails from './components/fetchapi/ProductDetails'
+import Newproduct from './components/fetchapi/Newproduct'
 
 function App() {
   return (
     <Routes>
       <Route path="/" element={<Api />} />
       <Route path="/products/:id" element={<ProductDetails />} />
+      <Route path="/products/new" element={<Newproduct />} />
     </Routes>
   )
 }
