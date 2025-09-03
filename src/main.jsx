@@ -5,11 +5,10 @@ import App from './App.jsx';
 import ContextProvider from './components/hok/Usecontexthook.jsx';
 import { Store } from './components/reduxform/userslice.jsx';
 import { Provider } from 'react-redux';
+import { BrowserRouter } from "react-router-dom";
 
 createRoot(document.getElementById('root')).render(
-  <StrictMode>
-    <Provider store={Store}>
-      <App />
-    </Provider>
-  </StrictMode>
+  <BrowserRouter>
+    <App />
+  </BrowserRouter>
 );
