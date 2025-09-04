@@ -50,7 +50,7 @@ function Editproduct() {
             navigate(`/products/${id}`, { state: res.data })
         } catch (error) {
             console.log(error)
-        }
+      }
     }
 
 
