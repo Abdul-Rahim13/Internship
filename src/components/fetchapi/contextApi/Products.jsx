@@ -2,8 +2,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { AppContext } from '../contextApi/ContextAPIform';
 import { useContext } from 'react';
-import Lottie from 'lottie-react';
-import loaderAnimation from '../assets/Loading animation blue.json';
 
 
 function Products() {
